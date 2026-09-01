@@ -22,15 +22,46 @@ var livros = new[]
    }
 };
 
-app.MapGet ("/livros/{id}", (int id) =>
+app.MapGet 
+(
+   "/ola", () =>
  {
-   foreach (var livro in livros)
-    {
-       if (livro.Id == id)
-       {
-          return Results.Ok(livro);
-       }
-    }
-    return Results.NotFound();
- });
+   return "Bem-Vindo A Biblioteca API!";
+ }
+ );
+ app.MapGet 
+ (
+   "/biblioteca", () =>
+   {
+      return "Biblioteca Cental API";
+   }
+ );
+ app.MapGet
+ (
+   "/livros/", () =>
+   {
+      return "A Biblioteca Possui 10 Livros";
+   }
+ );
+ app.MapGet
+ (
+   "/livros/{id}", (int id) =>
+   {
+      return $"Voce solicitou o livro de ID {id}.";
+   }
+ );
+ app.MapGet
+ (
+   "/autor/{id}", (int id) =>
+   {
+      return $"Voce solicitou o Autor de ID {id}.";
+   }
+ );
+ app.MapGet
+ (
+   "/livros/{id}/capitulos/{capitulo}", (int id, int capitulo) =>
+   {
+      return $"Voce solicitou o livro de ID {id} e Capitulo {capitulo}.";
+   }
+ );
 app.Run();
